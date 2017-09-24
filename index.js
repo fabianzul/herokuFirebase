@@ -5,7 +5,9 @@ app.set('port', (process.env.PORT || 5000));
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json()); //soporte para codificar json
-app.use(bodyParser.urlencoded({ extended: true })); //Soporte para decodificar las url
+app.use(bodyParser.urlencoded({ 
+	extended: true 
+})); //Soporte para decodificar las url
 
 app.use(express.static(__dirname + '/public'));
 
@@ -21,10 +23,15 @@ app.get('/android', function(request, response) {
 //post
 //https://warm-atoll-90602.herokuapp.com/token-device
 //token
-var tokenDevicesURI = "token-device";
+//var tokenDevicesURI = "token-device";
 //app.post('/'+ tokenDevicesURI, function(request, response)){
 	//response.send(request.body.token);
 //});
+
+app.post('/token',function(req, res)){
+	var tokenr = req.body.token;
+	res.send(tokenr);
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
