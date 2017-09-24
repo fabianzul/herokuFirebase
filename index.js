@@ -22,9 +22,9 @@ app.get('/android', function(request, response) {
 //https://warm-atoll-90602.herokuapp.com/token-device
 //token
 var tokenDevicesURI = "token-device";
-//app.post('/'+ tokenDevicesURI, function(request, response)){
-//	response.send(request.body.token);
-//});
+app.post('/'+ tokenDevicesURI, function(request, response)){
+	//response.send(request.body.token);
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
