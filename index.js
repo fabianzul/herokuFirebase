@@ -9,6 +9,12 @@ app.use(bodyParser.urlencoded({
 	extended: true 
 })); //Soporte para decodificar las url
 
+var firebase = require("firebase");
+firebase.initializeApp({
+	serviceAccount: "Luminer-bab78d4d4524.json",
+	databaseURL: "https://luminer-v1.firebaseio.com"
+});
+
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
@@ -25,7 +31,14 @@ app.get('/android', function(request, response) {
 //token
 //var tokenDevicesURI = "token-device";
 app.post('/token-device', function(request, response){
-	response.send(request.body.token);
+	var token = request.body.token;
+	//response.send(request.body.token);
+	var db = firebase.databas();
+	var tokenDevices = db.ref("token-device").push();
+
+	tokenDevices.set({
+		token: token
+	});
 });
 
 app.listen(app.get('port'), function() {
