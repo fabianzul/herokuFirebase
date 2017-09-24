@@ -33,7 +33,7 @@ app.get('/android', function(request, response) {
 app.post('/token-device', function(request, response){
 	var token = request.body.token;
 	//response.send(request.body.token);
-	var db = firebase.databas();
+	var db = firebase.database();
 	var tokenDevices = db.ref("token-device").push();
 
 	tokenDevices.set({
