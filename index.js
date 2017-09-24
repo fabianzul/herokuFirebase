@@ -24,7 +24,7 @@ app.get('/android', function(request, response) {
 //https://warm-atoll-90602.herokuapp.com/token-device
 //token
 //var tokenDevicesURI = "token-device";
-app.post('/token-device', function(request, response)){
+app.post('/token-device', function(request, response){
 	response.send(request.body.token);
 });
 
