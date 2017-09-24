@@ -3,7 +3,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
 app.use(bodyParser.json()); //soporte para codificar json
 app.use(bodyParser.urlencoded({ 
 	extended: true 
@@ -23,14 +23,9 @@ app.get('/android', function(request, response) {
 //post
 //https://warm-atoll-90602.herokuapp.com/token-device
 //token
-//var tokenDevicesURI = "token-device";
-//app.post('/'+ tokenDevicesURI, function(request, response)){
-	//response.send(request.body.token);
-//});
-
-app.post('/token',function(req, res)){
-	var tokenr = req.body.token;
-	res.send(tokenr);
+var tokenDevicesURI = "token-device";
+app.post('/'+ tokenDevicesURI, function(request, response)){
+	response.send(request.body.token);
 });
 
 app.listen(app.get('port'), function() {
