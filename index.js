@@ -32,13 +32,13 @@ app.get('/android', function(request, response) {
 //var tokenDevicesURI = "token-device";
 app.post('/token-device', function(request, response){
 	var token = request.body.token;
-	//response.send(request.body.token);
 	var db = firebase.database();
 	var tokenDevices = db.ref("token-device").push();
 
 	tokenDevices.set({
 		token: token
 	});
+	response.send(request.body.token);
 });
 
 app.listen(app.get('port'), function() {
