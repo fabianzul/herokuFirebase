@@ -9,12 +9,10 @@ app.use(bodyParser.urlencoded({
 	extended: true 
 })); //Soporte para decodificar las url
 
-var firebase = require('firebase');
-var serviceAccount = require('Luminer-bab78d4d4524.json');
-
+var firebase = require("firebase");
 firebase.initializeApp({
-	credential: firebase.credential.cert(serviceAccount),
-	databaseURL: 'https://luminer-v1.firebaseio.com'
+	serviceAccount: "Luminer-bab78d4d4524.json",
+	databaseURL: "https://luminer-v1.firebaseio.com"
 });
 
 app.use(express.static(__dirname + '/public'));
