@@ -9,10 +9,17 @@ app.use(bodyParser.urlencoded({
 	extended: true 
 })); //Soporte para decodificar las url
 
-var firebase = require("firebase");
-firebase.initializeApp({
-	serviceAccount: "Luminer-bab78d4d4524.json",
-	databaseURL: "https://luminer-v1.firebaseio.com"
+//var firebase = require("firebase");
+//firebase.initializeApp({
+//	serviceAccount: "Luminer-bab78d4d4524.json",
+//	databaseURL: "https://luminer-v1.firebaseio.com"
+//});
+
+var admin = require("firebase-admin");
+
+admin.initializeApp({
+  credential: admin.credential.cert("Luminer-bab78d4d4524.json"),
+  databaseURL: "https://luminer-v1.firebaseio.com"
 });
 
 app.use(express.static(__dirname + '/public'));
@@ -32,7 +39,7 @@ app.get('/android', function(request, response) {
 //var tokenDevicesURI = "token-device";
 app.post('/token-device', function(request, response){
 	var token = request.body.token;
-	var db = firebase.database();
+	var db = admin.database();
 	var tokenDevices = db.ref("token-device").push();
 
 	tokenDevices.set({
