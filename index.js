@@ -179,8 +179,9 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	ref.orderByChild("miner").equalTo(miner) .on("child_added", function(data) {
 	   console.log(data.val() .token);
+	   response.send(JSON.stringify(data));
 	});
-	response.send(JSON.stringify(data))
+
 
 	/*ref.orderByValue() .on("value", function(data) {
 	   data.forEach(function(data) {
