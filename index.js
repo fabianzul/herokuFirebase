@@ -157,23 +157,6 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
   		console.log(snapshot.key);
   		console.log(snapshot.val());
 
-  		snapshot.forEach(function(childSnapshot) {
-		      // key will be "ada" the first time and "alan" the second time
-		      var key = childSnapshot.key;
-		      // childData will be the actual contents of the child
-		      var childData = childSnapshot.val();
-		      var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
-		  		enviarNotificacion(childData.token, mensaje);
-
-		  		respuesta = {
-					miner: miner,
-					token: childData.token,
-					alert: alert
-				};
-
-				response.send(JSON.stringify(respuesta));
-		  });
-
   		usuario = snapshot.val();
 
   		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
