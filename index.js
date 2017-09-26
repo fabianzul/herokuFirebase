@@ -45,16 +45,7 @@ app.post('/'+tokenMinerURI, function(request, response){
 		token: token,
 		propietario: propietario,
 		online: "true",
-		gpu0:"",
-		gpu1:"",
-		gpu2:"",
-		gpu3:"",
-		gpu4:"",
-		gpu5:"",
-		gpu6:"",
-		gpu7:"",
-		gpu8:"",
-		gpu9:""
+		gpu0:""
 	});
 
 	var path = tokenMiner.toString(); //devuelve toda la direccion + el identificador del registro
@@ -98,16 +89,6 @@ app.post('/'+tokenDevicesURI, function(request, response){
 		token: token,
 		propietario: propietario,
 		identificador: identificador,
-		miner0:"",
-		miner1:"",
-		miner2:"",
-		miner3:"",
-		miner4:"",
-		miner5:"",
-		miner6:"",
-		miner7:"",
-		miner8:"",
-		miner9:"" 
 	});
 
 	var path = tokenDevices.toString(); //devuelve toda la direccion + el identificador del registro
@@ -161,6 +142,48 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 
   		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
   		enviarNotificacion(usuario.token, mensaje);
+
+  		respuesta = {
+			miner: miner,
+			token: usuario.token,
+			alert: alert
+		};
+
+		response.send(JSON.stringify(respuesta));
+	}, function(errorObject){
+		console.log("The read failed: " + errorObject.code);
+		respuesta = {
+			miner: "",
+			token: "",
+			alert: ""
+		};
+		response.send(JSON.stringify(respuesta));
+	});
+});
+
+
+//GET
+////https://warm-atoll-90602.herokuapp.com/miner-alert2
+//miner
+//alert
+app.get("/miner-alert2/:miner/:alert", function(request,response){
+	var miner = request.params.miner;
+	var alert = request.params.alert;
+
+	var db = admin.database();
+	var ref = db.ref("token-device");
+	var usuario = ""
+
+	var respuesta = {};
+
+	ref.orderByChild("miner").equalTo(miner).on("value", function(snapshot) {
+  		console.log(snapshot.key);
+  		console.log(snapshot.val());
+
+  		usuario = snapshot.val();
+
+  		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
+  		//enviarNotificacion(usuario.token, mensaje);
 
   		respuesta = {
 			miner: miner,
