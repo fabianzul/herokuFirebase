@@ -98,7 +98,7 @@ app.get("/toque-animal/:id/:animal", function(request,response){
 	ref.on("value", function(snapshot) {
 			console.log(snapshot.val());
 			usuario = snapshot.val();
-			var mensaje = animal + "te dio un toque";
+			var mensaje = usuario.animal + "te dio un toque";
 			enviarNotificacion(usuario.token, mensaje);
 			respuesta = {
 				id: id,
