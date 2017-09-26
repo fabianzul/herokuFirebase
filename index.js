@@ -176,7 +176,13 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-	ref.orderByChild("token").on("child_added", function(snapshot) {
+	ref.orderByValue() .on("value", function(data) {
+	   data.forEach(function(data) {
+	      console.log("The " + data.key + " is " + data.val() );
+	   });
+	});
+
+	/*ref.orderByChild("token").on("child_added", function(snapshot) {
   		
   		console.log(snapshot.val() .token);
 
@@ -188,7 +194,6 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
   		respuesta = {
 			miner: miner,
 			token: usuario.token,
-
 			alert: alert
 		};
 
@@ -202,7 +207,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 			alert: ""
 		};
 		response.send(JSON.stringify(respuesta));
-	});
+	});*/
 });
 
 
