@@ -81,29 +81,30 @@ app.get("/toque-animal/:id/:animal", function(request,response){
 	var id = request.params.id;
 	var animal = request.params.animal;
 
-	var db = firebase.database();
-	var ref = db.ref("token-device/"+id);
-	var usuario=""
+	var db = admin.database();
+	var ref = db.ref("token-device/" + id);
+	var usuario = ""
 
 	var respuesta = {};
-	ref.on("value", 
-		function(snapshot){
-			usuario=snapshot.val();
+
+	ref.on("value", function(snapshot) {
+			console.log(snapshot.val());
+			usuario = snapshot.val();
 			var mensaje = animal + "te dio un toque";
-			respuesta={
+			respuesta = {
 				id: id,
 				token: usuario.token,
-				animal:usuario.animal
+				animal: usuario.animal
 		};
 		response.send(JSON.stringify(respuesta));
 	}, function(errorObject){
 			console.log("The read failed: " + errorObject.code);
-			respuesta={
+			respuesta = {
 				id: "",
 				token: "",
 				animal: ""
 			};
-		response.send(JSON.stringify(respuesta));
+			response.send(JSON.stringify(respuesta));
 
 	});
 });
