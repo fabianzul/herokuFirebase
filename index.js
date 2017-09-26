@@ -156,16 +156,10 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 	ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
   		//console.log(snapshot.key);
 
-  		snapshot.forEach(function(data) {
-	    	console.log("The " + data.key + " dinosaur's score is ");
-	    	var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
-  			enviarNotificacion(data.token, mensaje);
-	  	});
+  		usuario = snapshot.val();
 
-  		//usuario = snapshot.val();
-
-  		//var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
-  		//enviarNotificacion(usuario.token, mensaje);
+  		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
+  		enviarNotificacion(usuario[1].token, mensaje);
 
   		respuesta = {
 			miner: miner,
