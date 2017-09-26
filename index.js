@@ -177,7 +177,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var respuesta = {};
 
 	ref.orderByChild("token").on("child_added", function(snapshot) {
-  		console.log(snapshot.key);
+  		
   		console.log(snapshot.val() .token);
 
   		usuario = snapshot.val();
@@ -188,7 +188,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
   		respuesta = {
 			miner: miner,
 			token: usuario.token,
-			token2: usuario[1].token,
+
 			alert: alert
 		};
 
