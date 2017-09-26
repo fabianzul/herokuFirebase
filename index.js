@@ -160,7 +160,7 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
   		usuario = snapshot.val();
 
   		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
-  		enviarNotificacion(usuario.token, mensaje);
+  		enviarNotificacion(usuario[1].token, mensaje);
 
   		respuesta = {
 			miner: miner,
