@@ -178,7 +178,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	ref.orderByValue() .on("value", function(data) {
 	   data.forEach(function(data) {
-	      console.log("The " + data.key + " is " + data.val() );
+	      console.log("The " + data.key + " is " + data.val().token );
 	   });
 	});
 
