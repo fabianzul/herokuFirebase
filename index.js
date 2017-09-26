@@ -22,6 +22,11 @@ admin.initializeApp({
   databaseURL: "https://luminer-v1.firebaseio.com"
 });
 
+
+var FCM = require('fcm-push');
+
+
+
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
@@ -31,6 +36,8 @@ app.set('view engine', 'ejs');
 app.get('/android', function(request, response) {
   response.render('pages/index');
 });
+
+
 
 
 //post
@@ -91,6 +98,7 @@ app.get("/toque-animal/:id/:animal", function(request,response){
 			console.log(snapshot.val());
 			usuario = snapshot.val();
 			var mensaje = animal + "te dio un toque";
+			enviarNotificacion(usuario.token, mensaje);
 			respuesta = {
 				id: id,
 				token: usuario.token,
@@ -108,6 +116,37 @@ app.get("/toque-animal/:id/:animal", function(request,response){
 
 	});
 });
+
+
+function enviarNotificacion(tokenDestinatario, mensaje){
+
+	var serverKey = 'AIzaSyA6AxmCDGAPLHEaecPrEKV-F5YrS3JeeTY';
+	var fcm = new FCM(serverKey);
+
+	var message = {
+	    to: tokenDestinatario, // required fill with device token or topics
+	    collapse_key: '', 
+	    data: {},
+	    notification: {
+	        title: 'Notificacion desde el servidor',
+	        body: mensaje,
+	        icon: "bitcoin_in_processor",
+	        sound:"default",
+	        color:"#00BCD4"
+	    }
+	};
+
+	//callback style
+	fcm.send(message, function(err, response){
+	    if (err) {
+	        console.log("Something has gone wrong!");
+	    } else {
+	        console.log("Successfully sent with response: ", response);
+	    }
+	});
+
+};
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
