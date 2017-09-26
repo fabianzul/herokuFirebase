@@ -45,16 +45,7 @@ app.post('/'+tokenMinerURI, function(request, response){
 		token: token,
 		propietario: propietario,
 		online: "true",
-		gpu.set({
-			gpu0: "",
-			gpu1: "",
-			gpu2: "",
-			gpu3: "",
-			gpu4: "",
-			gpu5: "",
-			gpu6: "",
-			gpu7: ""
-		})
+		gpu:""
 	});
 
 	var path = tokenMiner.toString(); //devuelve toda la direccion + el identificador del registro
