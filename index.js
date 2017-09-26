@@ -180,7 +180,10 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	   data.forEach(function(data) {
 	      console.log("The " + data.key + " is " + data.val().token );
 	   });
+
+	   response.send(JSON.stringify(data));
 	});
+
 
 	/*ref.orderByChild("token").on("child_added", function(snapshot) {
   		
