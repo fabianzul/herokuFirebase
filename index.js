@@ -157,7 +157,7 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
   		//console.log(snapshot.key);
 
   		snapshot.forEach(function(data) {
-	    	console.log("The " + data.key + " dinosaur's score is " + data.val());
+	    	console.log("The " + data.key + " dinosaur's score is ");
 	    	var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
   			enviarNotificacion(data.token, mensaje);
 	  	});
