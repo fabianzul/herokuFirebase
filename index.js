@@ -176,7 +176,25 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-	ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
+	ref.orderByChild("miner").equalTo(miner).once('value', function(snapshot) {
+	  snapshot.forEach(function(childSnapshot) {
+	    var childKey = childSnapshot.key;
+	    var childData = childSnapshot.val();
+	    // ...
+	    var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
+  		//enviarNotificacion(usuario.token, mensaje);
+
+  		respuesta = {
+			miner: miner,
+			//token: usuario.token,
+			alert: alert
+		};
+
+		response.send(JSON.stringify(respuesta));
+	  });
+	});
+
+	/*ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
   		console.log(snapshot.key);
   		console.log(snapshot.val());
 
@@ -201,7 +219,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 			alert: ""
 		};
 		response.send(JSON.stringify(respuesta));
-	});
+	});*/
 });
 
 
