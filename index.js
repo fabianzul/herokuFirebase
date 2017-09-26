@@ -188,6 +188,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
   		respuesta = {
 			miner: miner,
 			token: usuario.token,
+			token2: usuario[1].token,
 			alert: alert
 		};
 
