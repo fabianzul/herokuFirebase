@@ -176,7 +176,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-	ref.orderByValue("miner").equalTo(miner).on("value", function(data) {
+	ref.orderByChild("miner").equalTo(miner).on("value", function(data) {
 	   data.forEach(function(data) {
 	      console.log("The " + data.key + " is " + data.val().token );
 	   });
