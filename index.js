@@ -176,15 +176,8 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-	ref
-   .orderByChild("miner")
-   .equalTo(miner)
-   .on("child_added", function(snapshot) {
-      console.log(snapshot.val());
-      snapshot.forEach(function(snapshot) {
-	      console.log("The " + snapshot.key + " key is " + snapshot.val().token );
-
-	   });
+	ref.orderByChild("miner").equalTo(miner).on("value", function(snapshot) {
+      console.log(snapshot.value());
       response.send(JSON.stringify(snapshot));
     });
 
