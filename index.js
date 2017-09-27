@@ -176,11 +176,13 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-
-	ref.orderByChild("miner").equalTo(miner) .on("child_added", function(data) {
-	   console.log(data.val() .token);
-	   response.send(JSON.stringify(data));
-	});
+	ref
+   .orderByChild("miner")
+   .equalTo(miner)
+   .on("child_added", function(snapshot) {
+      console.log(snapshot.val());
+      response.send(JSON.stringify(snapshot));
+    });
 
 
 	/*ref.orderByValue() .on("value", function(data) {
