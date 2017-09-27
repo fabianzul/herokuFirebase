@@ -177,13 +177,19 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var respuesta = {};
 
 
-	ref.child('miners').equalTo(miner).on("value", function(snapshot) {
+		ref.child('miners').orderByValue().on("value", function(snapshot) {
+		  snapshot.forEach(function(data) {
+		    console.log("The " + data.key + " dinosaur's score is " + data.val());
+		  });
+		});
+
+	/* FUNCIONA ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
 	    console.log(snapshot.val());
 	    snapshot.forEach(function(data) {
 	        console.log(data.key);
 	    });
 	    response.send(JSON.stringify(snapshot));
-	});
+	});*/
 
 	/*ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
       console.log(snapshot.val());
