@@ -181,7 +181,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
    .equalTo(miner)
    .on("child_added", function(snapshot) {
       console.log(snapshot.val());
-      data.forEach(function(snapshot) {
+      snapshot.forEach(function(snapshot) {
 	      console.log("The " + snapshot.key + " key is " + snapshot.val().token );
 
 	   });
