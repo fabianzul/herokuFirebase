@@ -181,15 +181,15 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	   console.log(data.val());
 	});*/
 
-	ref.orderByChild('miners/').equalTo(miner).on("value", function(snapshot) {
+	ref.orderByChild('miners/').equalTo(miner).on("value", function(snapshot.val().Children) {
 	    console.log(snapshot.val());
 	    snapshot.forEach(function(data) {
 	        console.log(data.key);
 	    });
-	    response.send(JSON.stringify(snapshot));
+	    response.send(JSON.stringify(data));
 	});
 
-	/*ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
+	/*FUNCIONA!!! ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
       console.log(snapshot.val());
       response.send(JSON.stringify(snapshot));
     });*/
