@@ -176,10 +176,18 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	var respuesta = {};
 
-	ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
+
+	ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
+	    console.log(snapshot.val());
+	    snapshot.forEach(function(data) {
+	        console.log(data.key);
+	    });
+	});
+
+	/*ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
       console.log(snapshot.val());
       response.send(JSON.stringify(snapshot));
-    });
+    });*/
 
 
 	/*ref.orderByValue() .on("value", function(data) {
