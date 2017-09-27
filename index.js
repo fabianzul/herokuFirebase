@@ -177,10 +177,8 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var respuesta = {};
 
 
-		ref.child('miners').orderByValue().on("value", function(snapshot) {
-		  snapshot.forEach(function(data) {
-		    console.log("The " + data.key + " dinosaur's score is " + data.val());
-		  });
+		ref.orderByChild("miners/").on("child_added", function(snapshot) {
+		  console.log(snapshot.key + " was " + snapshot.val().miner0 + " meters tall");
 		});
 
 	/* FUNCIONA ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
