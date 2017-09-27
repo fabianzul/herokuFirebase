@@ -178,7 +178,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 
 		ref.orderByChild("miners/").on("child_added", function(snapshot) {
-		  console.log(snapshot.key + " was " + snapshot.val().miner0 + " meters tall");
+		  console.log(snapshot.key + " was " + snapshot.val().miners + " meters tall");
 		});
 
 	/* FUNCIONA ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
