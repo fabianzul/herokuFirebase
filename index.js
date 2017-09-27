@@ -177,17 +177,17 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var respuesta = {};
 
 
-	ref.orderByChild("miners").on("child_added", function(data) {
+	/*ref.orderByChild("miners").on("child_added", function(data) {
 	   console.log(data.val());
-	});
+	});*/
 
-	/* FUNCIONA ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
+	ref.orderByChild('miners').equalTo(miner).on("value", function(snapshot) {
 	    console.log(snapshot.val());
 	    snapshot.forEach(function(data) {
 	        console.log(data.key);
 	    });
 	    response.send(JSON.stringify(snapshot));
-	});*/
+	});
 
 	/*ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
       console.log(snapshot.val());
