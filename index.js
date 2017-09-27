@@ -177,7 +177,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var respuesta = {};
 
 
-		ref.orderByChild("miners/").on("child_added", function(snapshot) {
+		ref.orderByChild("miners/").equalTo(miner).on("child_added", function(snapshot) {
 		  console.log(snapshot.key + " was " + snapshot.val().miners + " meters tall");
 		});
 
