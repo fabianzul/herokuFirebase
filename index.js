@@ -171,15 +171,15 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var alert = request.params.alert;
 
 	var db = admin.database();
-	var ref = db.ref("token-device/miners");
+	var ref = db.ref("token-device/");
 	var usuario = ""
 
 	var respuesta = {};
 
 
-		ref.orderByChild("miner0").equalTo(miner).on("child_added", function(snapshot) {
-		  console.log(snapshot.key + " was " + snapshot.val().miners + " meters tall");
-		});
+	ref.orderByChild("miners").on("child_added", function(data) {
+	   console.log(data.val());
+	});
 
 	/* FUNCIONA ref.orderByChild('miner').equalTo(miner).on("value", function(snapshot) {
 	    console.log(snapshot.val());
