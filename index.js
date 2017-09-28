@@ -178,34 +178,15 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	ref.orderByChild('id').equalTo(miner).on("child_added", function(snapshot) {
 	    //console.log(snapshot.val());
-	    console.log(snapshot.val().propietario);
-	    console.log(snapshot.val().tokens[0]);
-	    snapshot.val().tokens.forEach(function(data){
-	    	console.log(data);
+	    //console.log(snapshot.val().propietario);
+	    //console.log(snapshot.val().tokens[0]);
+	    snapshot.val().tokens.forEach(function(token){
+	    	console.log(token);
+	    	var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
+  			enviarNotificacion(token, mensaje);
 	    });
 	    response.send(JSON.stringify(snapshot.val()));
-	});
-
-	
-
-	/*ref.orderByChild("token").on("child_added", function(snapshot) {
-  		
-  		console.log(snapshot.val() .token);
-
-  		usuario = snapshot.val();
-
-  		var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
-  		//enviarNotificacion(usuario.token, mensaje);
-
-  		respuesta = {
-			miner: miner,
-			token: usuario.token,
-			alert: alert
-		};
-
-		response.send(JSON.stringify(respuesta));
-
-	}, function(errorObject){
+	},function(errorObject){
 		console.log("The read failed: " + errorObject.code);
 		respuesta = {
 			miner: "",
@@ -213,7 +194,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 			alert: ""
 		};
 		response.send(JSON.stringify(respuesta));
-	});*/
+	});
 });
 
 
