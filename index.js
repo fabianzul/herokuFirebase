@@ -183,8 +183,8 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	ref.orderByChild('id').equalTo(miner).on("child_added", function(snapshot) {
 	    console.log(snapshot.val());
-	    console.log(snapshot.propietario());
-	    response.send(JSON.stringify(snapshot));
+	    console.log(snapshot.val().propietario);
+	    response.send(JSON.stringify(snapshot.val()));
 	});
 
 	/*FUNCIONA!!! ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
