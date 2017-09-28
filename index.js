@@ -186,7 +186,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	    snapshot.forEach(function(data) {
 	        console.log(data.key);
 	    });
-	    response.send(JSON.stringify(data));
+	    response.send(JSON.stringify(snapshot));
 	});
 
 	/*FUNCIONA!!! ref.orderByChild("miner").equalTo(miner).on("child_added", function(snapshot) {
