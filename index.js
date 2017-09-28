@@ -183,9 +183,10 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 
 	ref.orderByChild('miners/').on("child_added", function(snapshot) {
 	    console.log(snapshot.val());
-	    snapshot.forEach(function(data) {
+	    /*snapshot.forEach(function(data) {
 	        console.log(data.key);
-	    });
+	    });*/
+		console.log(snapshot.val().miner);
 	    response.send(JSON.stringify(snapshot));
 	});
 
