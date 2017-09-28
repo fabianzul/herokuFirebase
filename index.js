@@ -186,7 +186,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	    /*snapshot.forEach(function(data) {
 	        console.log(data.key);
 	    });*/
-		console.log(snapshot.val().miner);
+		console.log(snapshot.val().miner[0]);
 	    response.send(JSON.stringify(snapshot));
 	});
 
