@@ -171,7 +171,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	var alert = request.params.alert;
 
 	var db = admin.database();
-	var ref = db.ref("token-device/");
+	var ref = db.ref("token-device");
 	var usuario = ""
 
 	var respuesta = {};
@@ -181,7 +181,7 @@ app.get("/miner-alert2/:miner/:alert", function(request,response){
 	   console.log(data.val());
 	});*/
 
-	ref.orderByChild('miners/').equalTo(miner).on("value", function(snapshot.val().Children) {
+	ref.orderByChild('miners').equalTo(miner).on("value", function(snapshot) {
 	    console.log(snapshot.val());
 	    snapshot.forEach(function(data) {
 	        console.log(data.key);
