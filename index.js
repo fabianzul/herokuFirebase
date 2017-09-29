@@ -148,7 +148,7 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 	    //console.log(snapshot.val());
 	    var key = snapshot.key;
 		console.log(key);
-		var refAlerts = db.ref("miners/"+key+"/").push();
+		var refAlerts = db.ref("miners/"+key+"/alerts").push();
 
 		refAlerts.set({
 			alerts: alert
