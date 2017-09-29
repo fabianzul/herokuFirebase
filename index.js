@@ -39,8 +39,6 @@ app.post('/'+MinerURI, function(request, response){
 	var propietario = request.body.propietario;
 	var alerts = request.body.alerts;
 
-	console.log(alerts);
-
 	var db = admin.database();
 	var Miner = db.ref(MinerURI).push();
 
@@ -135,6 +133,8 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 	var ref = db.ref("miners");
 	var usuario = ""
 
+	var db
+
 	var respuesta = {};
 	respuesta = {
 			miner: miner,
@@ -142,10 +142,14 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 			send: "ok"
 		};
 
+
+
 	ref.orderByChild('id').equalTo(miner).on("child_added", function(snapshot) {
-	    //console.log(snapshot.val());
+	    console.log(snapshot.val());
 	    //console.log(snapshot.val().propietario);
 	    //console.log(snapshot.val().tokens[0]);
+	    var key = Object.keys(snapshot.val())[0];
+	    console.log(key)
 	    snapshot.val().tokens.forEach(function(token){
 	    	console.log(token);
 	    	var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
