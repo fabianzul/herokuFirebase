@@ -148,10 +148,11 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 	    //console.log(snapshot.val());
 	    var key = snapshot.key;
 		console.log(key);
-		var refAlerts = db.ref("miners/"+key+"/alerts").push();
+		var refAlerts = db.ref("miners/"+key+"/alerts/").push();
 
 		refAlerts.set({
-			alerts: alert
+			descrip: alert[0],
+			date: alert[1]
 		});
 	    //console.log(snapshot.val().propietario);
 	    //console.log(snapshot.val().tokens[0]);
