@@ -145,13 +145,15 @@ app.get("/miner-alert/:miner/:alert", function(request,response){
 
 
 	ref.orderByChild('id').equalTo(miner).on("child_added", function(snapshot) {
-	    console.log(snapshot.val());
+	    //console.log(snapshot.val());
+	    var arr = snapshot.val();
+		var arr2 = Object.keys(arr);
+		var key = arr2[0];
+		console.log(key);
 	    //console.log(snapshot.val().propietario);
 	    //console.log(snapshot.val().tokens[0]);
-	    var key = Object.keys(snapshot.val())[0];
-	    console.log(key)
 	    snapshot.val().tokens.forEach(function(token){
-	    	console.log(token);
+	    	//console.log(token);
 	    	var mensaje = "El minero " + miner + " ha generado un error: " + alert; //alert: alta temperatura en GPU0
   			enviarNotificacion(token, mensaje);
 	    });
