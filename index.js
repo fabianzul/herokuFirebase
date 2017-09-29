@@ -43,7 +43,7 @@ app.post('/'+MinerURI, function(request, response){
 
 	var db = admin.database();
 	var Miner = db.ref(MinerURI).push();
-	var Alert = db.ref.child("alerts").push;
+	var Alert = db.ref.child("alerts").push();
 
 	Miner.set({
 		id: id,
