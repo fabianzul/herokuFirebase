@@ -47,7 +47,7 @@ app.post('/'+MinerURI, function(request, response){
 	Miner.set({
 		id: id,
 		propietario: propietario,
-		alerts: alert
+		alerts: [alert[0],alert[1],alert[2]]
 	});
 
 	var path = Miner.toString(); //devuelve toda la direccion + el identificador del registro
