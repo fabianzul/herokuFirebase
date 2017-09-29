@@ -34,7 +34,7 @@ app.get('/android', function(request, response) {
 //token
 //Registrar el minero en firebase
 var MinerURI = "miners";
-app.post('/'+tokenMinerURI, function(request, response){
+app.post('/'+MinerURI, function(request, response){
 	var id = request.body.id;
 	var propietario = request.body.propietario;
 
